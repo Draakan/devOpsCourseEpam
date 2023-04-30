@@ -1,0 +1,34 @@
+stages:
+  - test
+  - build
+  - deploy
+
+image: node:latest
+
+test:
+  stage: test
+  script:
+    - echo "Running unit tests"
+
+lint:
+  stage: test
+  script:
+    - echo "Running eslint check"
+
+audit:
+  stage: test
+  script:
+    - echo "Running npm packages audit"
+
+build:
+  stage: build
+  script:
+    - echo "Building docker image"
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Pushing to docker registry"
+  when: manual
+  only:
+    - main
